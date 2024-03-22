@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vote/Widgets/drawer.dart';
+import 'package:vote/Widgets/homebutton.dart';
 import 'package:vote/constant.dart';
 
 class HomePage extends StatefulWidget {
@@ -10,76 +11,51 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  bool isCategoryButtonPressed = false;
-  bool isSelectedButtonPressed = false;
+  int selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: mainColor,
+      appBar: AppBar(
+        title: const Text(
+          'Homepage',
+          style: TextStyle(
+            fontWeight: FontWeight.w700,
+            color: white,
+          ),
         ),
-        drawer: const CustomDrawer(),
-        body: Column(
-          children: [
-            Row(
+        centerTitle: true,
+        elevation: 0.0,
+        backgroundColor: mainColor,
+      ),
+      drawer: const CustomDrawer(),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      isCategoryButtonPressed = !isCategoryButtonPressed;
-                    });
-                  },
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                        (Set<MaterialState> states) {
-                      if (states.contains(MaterialState.pressed)) {
-                        return mainColor; // Background color when pressed
-                      }
-                      return isCategoryButtonPressed
-                          ? white
-                          : mainColor; // Background color when not pressed
-                    }),
-                    foregroundColor: MaterialStateProperty.resolveWith<Color>(
-                        (Set<MaterialState> states) {
-                      return isCategoryButtonPressed ||
-                              states.contains(MaterialState.pressed)
-                          ? white
-                          : black; // Text color
-                    }),
+                GestureDetector(
+                  onTap: () => Navigator.pushNamed(context, '/homepage'),
+                  child: HomeButtons(
+                    text: 'Categories',
+                    isSelected: selectedIndex == 0,
                   ),
-                  child: Text('Categories'),
                 ),
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      isSelectedButtonPressed = !isSelectedButtonPressed;
-                    });
-                  },
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                        (Set<MaterialState> states) {
-                      if (states.contains(MaterialState.pressed)) {
-                        return mainColor; // Background color when pressed
-                      }
-                      return isSelectedButtonPressed
-                          ? white
-                          : mainColor; // Background color when not pressed
-                    }),
-                    foregroundColor: MaterialStateProperty.resolveWith<Color>(
-                        (Set<MaterialState> states) {
-                      return isSelectedButtonPressed ||
-                              states.contains(MaterialState.pressed)
-                          ? white
-                          : black; // Text color
-                    }),
+                const SizedBox(width: 10),
+                GestureDetector(
+                  onTap: () => Navigator.pushNamed(context, '/selected'),
+                  child: HomeButtons(
+                    text: 'Selected',
+                    isSelected: selectedIndex == 1,
                   ),
-                  child: Text('Selected'),
                 ),
               ],
             ),
-          ],
-        ));
+          ),
+        ],
+      ),
+    );
   }
 }

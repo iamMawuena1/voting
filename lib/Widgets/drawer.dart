@@ -7,45 +7,47 @@ class CustomDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Drawer(
-      surfaceTintColor: white,
-      backgroundColor: mainColor,
-      width: MediaQuery.of(context).size.width * 0.6,
-      child: ListView(
-        children: [
-          const SizedBox(height: 100),
-          const Divider(thickness: 2.0),
-          SideBarWidget(
-            onTap: () => Navigator.pushNamed(context, '/homepage'),
-            text: 'Home',
-            iconData: Icons.home_filled,
-          ),
-          const Divider(thickness: 2.0),
-          SideBarWidget(
-            onTap: () => Navigator.pushNamed(context, '/notification'),
-            text: 'Notification',
-            iconData: Icons.notifications,
-          ),
-          const Divider(thickness: 2.0),
-          SideBarWidget(
-            onTap: () => Navigator.pushNamed(context, '/account'),
-            text: 'Account',
-            iconData: Icons.person_2_outlined,
-          ),
-          const Divider(thickness: 2.0),
-          SideBarWidget(
-            onTap: () => Navigator.pushNamed(context, '/selected'),
-            text: 'Selected',
-            iconData: Icons.favorite_outline,
-          ),
-          const Divider(thickness: 2),
-          const SizedBox(height: 200),
-          SideBarWidget(
-            text: 'Logout',
-            iconData: Icons.logout_outlined,
-            onTap: () => showLogoutDialog(context),
-          ),
-        ],
+    return IconTheme(
+      data: const IconThemeData(color: white),
+      child: Drawer(
+        backgroundColor: mainColor,
+        width: MediaQuery.of(context).size.width * 0.6,
+        child: ListView(
+          children: [
+            const SizedBox(height: 100),
+            const Divider(thickness: 2.0),
+            SideBarWidget(
+              onTap: () => Navigator.pushNamed(context, '/homepage'),
+              text: 'Home',
+              iconData: Icons.home_filled,
+            ),
+            const Divider(thickness: 2.0),
+            SideBarWidget(
+              onTap: () => Navigator.pushNamed(context, '/notification'),
+              text: 'Notification',
+              iconData: Icons.notifications,
+            ),
+            const Divider(thickness: 2.0),
+            SideBarWidget(
+              onTap: () => Navigator.pushNamed(context, '/account'),
+              text: 'Account',
+              iconData: Icons.person_2_outlined,
+            ),
+            const Divider(thickness: 2.0),
+            SideBarWidget(
+              onTap: () => Navigator.pushNamed(context, '/selected'),
+              text: 'Selected',
+              iconData: Icons.favorite_outline,
+            ),
+            const Divider(thickness: 2),
+            const SizedBox(height: 200),
+            SideBarWidget(
+              text: 'Logout',
+              iconData: Icons.logout_outlined,
+              onTap: () => showLogoutDialog(context),
+            ),
+          ],
+        ),
       ),
     );
   }

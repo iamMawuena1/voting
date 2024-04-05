@@ -36,7 +36,7 @@ class _SplashScreenState extends State<SplashScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Image.asset(
-              'assets/box.png',
+              'assets/votelogo.png',
             ),
             const SizedBox(height: 10),
             const Text("Bio - Vote"),

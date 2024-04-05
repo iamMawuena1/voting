@@ -27,21 +27,23 @@ class _LoginScreenState extends State<LoginScreen> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: mainColor,
-        body: Stack(
-          children: [
-            // Positioned the image within the Stack
-            Positioned(
-              left: 40,
-              top: 140,
-              right: 40,
-              child: Image.asset(
-                'assets/man.png',
-                fit: BoxFit.fitHeight,
-                width: 243.68,
-                height: 196,
+        body: SafeArea(
+          child: Stack(
+            children: [
+              // Positioned the image within the Stack
+              Positioned(
+                left: 40,
+                top: 140,
+                right: 40,
+                child: Image.asset(
+                  'assets/man.png',
+                  fit: BoxFit.fitHeight,
+                  width: 243.68,
+                  height: 196,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

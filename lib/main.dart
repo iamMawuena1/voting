@@ -6,7 +6,6 @@ import 'package:vote/pages/screen/intro2.dart';
 import 'package:vote/pages/screen/intro3.dart';
 import 'package:vote/pages/screen/login.dart';
 import 'package:vote/pages/screen/notification.dart';
-import 'package:vote/pages/screen/selected.dart';
 import 'package:vote/pages/screen/signup.dart';
 import 'package:vote/pages/splashpage.dart';
 
@@ -23,13 +22,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
-        '/homepage': (context) => const HomePage(),
+        '/homepage': (context) => const HomePage(
+              initalTabIndex: 0,
+            ),
         '/onboarding': (context) => const OnboardingPage(),
         '/login': (context) => const LoginScreen(),
         '/signup': (context) => const SignUpScreen(),
         '/page2': (context) => const Intropage2(),
         '/page3': (context) => const Intropage3(),
-        '/selected': (context) => const SelectedPage(),
         '/account': (context) => const AccountPage(),
         '/notification': (context) => const NotficationPage(),
       },

@@ -22,57 +22,59 @@ class _OnboardingPageState extends State<OnboardingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          // page view
-          PageView(
-            controller: controller,
-            onPageChanged: (index) {
-              setState(() {
-                isLastpage = (index == 2);
-              });
-            },
-            children: const [
-              IntroPage1(),
-              Intropage2(),
-              Intropage3(),
-            ],
-          ),
-
-          //page indicator
-          Container(
-            alignment: const Alignment(0, 0.9),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const Text(
-                  '',
-                  style: TextStyle(
-                    color: black,
-                  ),
-                ),
-                SmoothPageIndicator(
-                  controller: controller,
-                  count: 3,
-                  effect: const ExpandingDotsEffect(
-                    activeDotColor: mainColor,
-                    dotColor: Colors.grey,
-                    spacing: 10,
-                  ),
-                ),
-                isLastpage
-                    ? const Text('')
-                    : GestureDetector(
-                        onTap: () {
-                          controller.jumpToPage(2);
-                        },
-                        child: const Text('Skip >>'),
-                      ),
+      body: SafeArea(
+        child: Stack(
+          children: [
+            // page view
+            PageView(
+              controller: controller,
+              onPageChanged: (index) {
+                setState(() {
+                  isLastpage = (index == 2);
+                });
+              },
+              children: const [
+                IntroPage1(),
+                Intropage2(),
+                Intropage3(),
               ],
             ),
-          ),
-        ],
+
+            //page indicator
+            Container(
+              alignment: const Alignment(0, 0.9),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const Text(
+                    '',
+                    style: TextStyle(
+                      color: black,
+                    ),
+                  ),
+                  SmoothPageIndicator(
+                    controller: controller,
+                    count: 3,
+                    effect: const ExpandingDotsEffect(
+                      activeDotColor: mainColor,
+                      dotColor: Colors.grey,
+                      spacing: 10,
+                    ),
+                  ),
+                  isLastpage
+                      ? const Text('')
+                      : GestureDetector(
+                          onTap: () {
+                            controller.jumpToPage(2);
+                          },
+                          child: const Text('Skip >>'),
+                        ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

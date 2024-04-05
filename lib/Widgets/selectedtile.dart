@@ -6,7 +6,6 @@ class SelectedPageListTile extends StatelessWidget {
   final String title;
   final String description;
   final VoidCallback onDelete;
-  final VoidCallback onAccept;
 
   const SelectedPageListTile({
     super.key,
@@ -14,14 +13,22 @@ class SelectedPageListTile extends StatelessWidget {
     required this.title,
     required this.description,
     required this.onDelete,
-    required this.onAccept,
   });
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: SizedBox(height: 50, width: 60, child: Image(image: image)),
-      title: Text(title),
+      leading: SizedBox(
+        height: 50,
+        width: 60,
+        child: Image(image: image),
+      ),
+      title: Text(
+        title,
+        style: const TextStyle(
+          fontWeight: FontWeight.w800,
+        ),
+      ),
       subtitle: Text(description),
       trailing: Row(
         mainAxisSize: MainAxisSize.min,
@@ -32,13 +39,6 @@ class SelectedPageListTile extends StatelessWidget {
               color: mainColor,
             ),
             onPressed: onDelete,
-          ),
-          IconButton(
-            icon: const Icon(
-              Icons.check,
-              color: Colors.green,
-            ),
-            onPressed: onAccept,
           ),
         ],
       ),

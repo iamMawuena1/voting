@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vote/pages/screen/login.dart';
 
 import '../../Widgets/button.dart';
 import '../../constant.dart';
@@ -38,19 +39,23 @@ class _Intropage3State extends State<Intropage3> {
               const SizedBox(height: 50),
               CustomButton(
                 onpressed: () {
-                  Navigator.pushNamed(context, '/login');
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: ((context) => const LoginScreen()),
+                    ),
+                  );
                 },
                 height: 40,
                 width: 147,
                 child: const Text(
-                  'Sign In',
+                  'Next',
                   style: TextStyle(
                     color: white,
-                    fontWeight: FontWeight.w700,
                     fontSize: 15,
                   ),
                 ),
-              ),
+              )
             ],
           ),
         ),

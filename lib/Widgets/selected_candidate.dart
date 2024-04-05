@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vote/Widgets/button.dart';
 import 'package:vote/constant.dart';
 
 import 'selectedtile.dart';
@@ -69,19 +70,45 @@ class SelectedCandidatesPage extends StatelessWidget {
                 ],
               ),
             )
-          : ListView.builder(
-              itemCount: selectedCandidates.length,
-              itemBuilder: (context, index) {
-                final candidate = selectedCandidates[index];
-                return SelectedPageListTile(
-                  image: AssetImage(candidate['imagePath']!),
-                  title: candidate['categoryName']!,
-                  description: candidate['candidateName']!,
-                  onDelete: () {
-                    onDelete(index);
-                  },
-                );
-              },
+          : Column(
+              children: [
+                Expanded(
+                  child: ListView.separated(
+                    itemCount: selectedCandidates.length,
+                    separatorBuilder: (context, index) => const Divider(
+                      color: mainColor,
+                    ),
+                    itemBuilder: (context, index) {
+                      final candidate = selectedCandidates[index];
+                      return SelectedPageListTile(
+                        image: AssetImage(candidate['imagePath']!),
+                        title: candidate['categoryName']!,
+                        description: candidate['candidateName']!,
+                        onDelete: () {
+                          onDelete(index);
+                        },
+                      );
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 20.0),
+                  child: SizedBox(
+                    child: CustomButton(
+                      onpressed: () {},
+                      height: 40,
+                      width: 147,
+                      child: const Text(
+                        'Finish',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          color: white,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
     );
   }
